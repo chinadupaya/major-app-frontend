@@ -32,6 +32,20 @@ export class ApiService {
       catchError(this.handleError<any>('getServices',[]))
     )
   }
+  getJob(jobId){
+    return this.httpClient.get(`${this.SERVER_URL}/jobs/${jobId}`)
+    .pipe(
+      tap(_=> console.log('get job with id:' + jobId)),
+      catchError(this.handleError<any>('getJob',[]))
+    )
+  }
+  getService(serviceId){
+    return this.httpClient.get(`${this.SERVER_URL}/services/${serviceId}`)
+    .pipe(
+      tap(_=> console.log('get job with id:' + serviceId)),
+      catchError(this.handleError<any>('getService',[]))
+    )
+  }
   registerUser(formEmail, formFirstName, formLastName, formPassword){
     return this.httpClient.post(`${this.SERVER_URL}/users`,{
       email: formEmail,

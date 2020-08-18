@@ -3,6 +3,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { FormGroup, FormBuilder, Validators, Form} from '@angular/forms';
 import { ApiService } from '../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-job',
@@ -17,7 +18,9 @@ export class PostJobComponent implements OnInit {
   longitude;
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -41,6 +44,7 @@ export class PostJobComponent implements OnInit {
       this.address, this.latitude, this.longitude, userObj.id, userObj.first_name, userObj.last_name, userObj.rating)
     .subscribe((res)=>{
       console.log(res);
+      this.router.navigate(['../profile'], { relativeTo: this.route })
     })
   }
 

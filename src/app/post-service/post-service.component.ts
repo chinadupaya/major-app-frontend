@@ -3,6 +3,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { FormGroup, FormBuilder, Validators, Form} from '@angular/forms';
 import { ApiService } from '../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-service',
@@ -17,7 +18,9 @@ export class PostServiceComponent implements OnInit {
   longitude;
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -44,6 +47,7 @@ export class PostServiceComponent implements OnInit {
       userObj.id, userObj.first_name, userObj.last_name, userObj.rating)
     .subscribe((response)=>{
       console.log(response);
+      this.router.navigate(['../profile'], { relativeTo: this.route })
     })
   }
 

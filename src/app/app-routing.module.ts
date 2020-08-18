@@ -9,6 +9,8 @@ import { PostJobComponent } from './post-job/post-job.component';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { PostServiceComponent } from './post-service/post-service.component';
+import { JobDetailsComponent } from './job-details/job-details.component';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'signup', component: RegisterComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'jobs', component: JobsListComponent},
   { path: 'services', component: ServicesListComponent},
   { path: 'post-service', component: PostServiceComponent},
+  { path: 'jobs/:id', component: JobDetailsComponent},
+  { path: 'services/:id', component: ServiceDetailsComponent}
 ];
 
 @NgModule({

@@ -20,6 +20,8 @@ import { PostServiceComponent } from './post-service/post-service.component';
 import { ServicesListComponent } from './services-list/services-list.component';
 import { UserJobsComponent } from './user-jobs/user-jobs.component';
 import { UserServicesComponent } from './user-services/user-services.component';
+import { JobDetailsComponent } from './job-details/job-details.component';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { UserServicesComponent } from './user-services/user-services.component';
     PostServiceComponent,
     ServicesListComponent,
     UserJobsComponent,
-    UserServicesComponent
+    UserServicesComponent,
+    JobDetailsComponent,
+    ServiceDetailsComponent
   ],
   imports: [
     BrowserModule,
