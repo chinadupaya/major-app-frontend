@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
+  public isMenuCollapsed = true;
   constructor(private cookieService: CookieService,
     private route: ActivatedRoute,
     private router: Router) { }

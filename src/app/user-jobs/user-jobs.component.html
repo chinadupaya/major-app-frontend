@@ -1,0 +1,9 @@
+
+<div *ngIf="jobs.length > 0">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let job of jobs">{{job.title}}</li>
+    </ul>
+</div>
+<div *ngIf="jobs.length ==0">
+    <h4>You don't have any jobs yet.</h4>
+</div>

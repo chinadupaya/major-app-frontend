@@ -13,6 +13,13 @@ import { LandingComponent } from './landing/landing.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateWorkerProfileComponent } from './create-worker-profile/create-worker-profile.component';
+import { PostJobComponent } from './post-job/post-job.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { JobsListComponent } from './jobs-list/jobs-list.component';
+import { PostServiceComponent } from './post-service/post-service.component';
+import { ServicesListComponent } from './services-list/services-list.component';
+import { UserJobsComponent } from './user-jobs/user-jobs.component';
+import { UserServicesComponent } from './user-services/user-services.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +29,13 @@ import { CreateWorkerProfileComponent } from './create-worker-profile/create-wor
     NavComponent,
     LandingComponent,
     ProfileComponent,
-    CreateWorkerProfileComponent
+    CreateWorkerProfileComponent,
+    PostJobComponent,
+    JobsListComponent,
+    PostServiceComponent,
+    ServicesListComponent,
+    UserJobsComponent,
+    UserServicesComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +44,7 @@ import { CreateWorkerProfileComponent } from './create-worker-profile/create-wor
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    GooglePlaceModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

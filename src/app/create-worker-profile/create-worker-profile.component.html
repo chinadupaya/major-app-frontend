@@ -1,1 +1,36 @@
-<p>create-worker-profile works!</p>
+
+  <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
+    <div class="row">
+    <div class="col-sm-12">
+        <div>
+          <h6 class="head-title margin-top-8"><span>Please upload the following images and wait to be registered as a worker</span></h6>
+        </div>
+    </div>
+    <div class="col-12">
+        <h3>Government Id</h3>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile" name="nbiClearance"
+            (change)="onGovIdSelect($event)" #UploadFileInput>
+          <label class="custom-file-label" for="customFile">{{govIdInputLabel || 'Choose File'}}</label>
+        </div>
+    </div>
+    <div class="col-12">
+        <h3>NBI Clearance</h3>
+        <div class="custom-file">
+            
+            <input type="file" class="custom-file-input" id="customFile" name="govId"
+              (change)="onNbiClearanceSelect($event)" #UploadFileInput>
+            <label class="custom-file-label" for="customFile">{{nbiClearanceInputLabel || 'Choose File'}}</label>
+          </div>
+    </div>
+    <div class="col-12">
+        <h3>Signature Id</h3>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" name="signature"
+              (change)="onSignatureSelect($event)" #UploadFileInput>
+            <label class="custom-file-label" for="customFile">{{signatureInputLabel || 'Choose File'}}</label>
+          </div>
+    </div>
+      <div class="col-sm-6"> <button class="btn btn-primary" type="submit">Upload</button> </div>
+    </div>
+  </form>

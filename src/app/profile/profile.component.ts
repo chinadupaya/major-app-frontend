@@ -16,8 +16,10 @@ export class ProfileComponent implements OnInit {
   }
   fetchUser(){
     var userObj = JSON.parse(this.cookieService.get('Test'));
-    this.apiService.getUser(userObj.id)
-    .subscribe((user)=>{console.log(user); this.user = user.data})
+    console.log(userObj);
+    this.user = userObj;
+    /* this.apiService.getUser(userObj.id)
+    .subscribe((user)=>{console.log(user); this.user = user.data}) */
   }
 
 }

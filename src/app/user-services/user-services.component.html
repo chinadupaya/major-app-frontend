@@ -1,0 +1,8 @@
+<div *ngIf="services.length > 0">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let service of services">{{service.title}}</li>
+    </ul>
+</div>
+<div *ngIf="services.length ==0">
+    <h4>You don't have any services yet.</h4>
+</div>
