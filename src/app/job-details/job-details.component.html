@@ -1,3 +1,33 @@
 <h1>{{job.title}}</h1>
 <span>{{job.location}}</span>
 <p>{{job.description}}</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="job.user_id != user.id">
+    <label class="sr-only" for="inlineFormInputGroupUsername2">Price</label>
+    <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+        <div class="input-group-text">Php</div>
+        </div>
+        <input type="number" min="1" formControlName="price" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Price">
+    </div>
+    <button type="submit" class="btn btn-primary">Apply for this job</button>
+</form>
+<div class="container" *ngIf="job.user_id == user.id">
+    <h3>Job Applications</h3>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let booking of bookings">
+            <div class="row">
+                <div class="col-8">
+                    Php{{booking.price}}
+                    Status: {{booking.status}}
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-outline-warning mr-1">Message</button>
+                    <button class="btn btn-outline-primary mr-1">Approve</button>
+                    <button class="btn btn-outline-danger">Cancel</button>
+                </div>
+            </div>
+            
+            
+        </li>
+    </ul>
+</div>

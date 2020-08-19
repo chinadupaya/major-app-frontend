@@ -22,6 +22,8 @@ import { UserJobsComponent } from './user-jobs/user-jobs.component';
 import { UserServicesComponent } from './user-services/user-services.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { JobApplicationsComponent } from './profile/job-applications/job-applications.component';
+import { ServiceRequestsComponent } from './profile/service-requests/service-requests.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ServiceDetailsComponent } from './service-details/service-details.compo
     UserJobsComponent,
     UserServicesComponent,
     JobDetailsComponent,
-    ServiceDetailsComponent
+    ServiceDetailsComponent,
+    JobApplicationsComponent,
+    ServiceRequestsComponent
   ],
   imports: [
     BrowserModule,

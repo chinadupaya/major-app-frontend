@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service'
 })
 export class ProfileComponent implements OnInit {
   user: User
+  active = 1;
   constructor(private apiService: ApiService, private cookieService: CookieService) { }
 
   ngOnInit(): void {

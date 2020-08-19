@@ -1,0 +1,18 @@
+<div class="container">
+    
+    <div *ngIf="bookings.length > 0">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let booking of bookings">
+                <h4><a class="text-dark" routerLink="../jobs/{{booking.job_id}}">Check out the job</a></h4>
+                <span>Php {{booking.price}}</span>
+                <p>Status: <span *ngIf="booking.status==0" class="text-info">Waiting for Approval</span>
+                    <span *ngIf="booking.status==1" class="text-info">In Progress</span>
+                    <span *ngIf="booking.status==2" class="text-danger">Cancelled</span>
+                    <span *ngIf="booking.status==3" class="text-success">Completed</span></p>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="bookings.length ==0">
+        <h4>You don't have any service requests currently.</h4>
+    </div>
+</div>

@@ -13,6 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PostJobComponent implements OnInit {
   form: FormGroup;
   submitted=false;
+  categories: any[];
+  subcategories: any[];
+  currentCategory:string;
+  currentSubcategory: string;
   address;
   latitude;
   longitude;
@@ -23,12 +27,29 @@ export class PostJobComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.getCategories();
+    this.getSubcategories('a');
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       address: ['', Validators.required],
-      category: ['test1', Validators.required]
+      category: ['a', Validators.required],
+      subcategory: ['a', Validators.required],
     });
+  }
+  getCategories(){
+    this.apiService.getCategories()
+    .subscribe((categories)=>{
+      this.categories = categories.data;
+      this.currentCategory=categories.data[0].name;
+    })
+  }
+  getSubcategories(categoryId){
+    this.apiService.getSubcategories(categoryId)
+    .subscribe((subcategories)=>{
+      this.subcategories = subcategories.data;
+      this.currentSubcategory = subcategories.data[0].name;
+    })
   }
   get f() { return this.form.controls; }
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
@@ -40,12 +61,35 @@ export class PostJobComponent implements OnInit {
   onSubmit(){
     //console.log(this.form.value, this.address,this.latitude, this.longitude);
     var userObj = JSON.parse(this.cookieService.get('Test'));
+    /* console.log(this.form.value.title, this.form.value.description,this.form.value.category,
+      this.currentCategory, this.form.value.subcategory, this.currentSubcategory,
+      this.address, this.latitude, this.longitude, userObj.id, userObj.first_name, userObj.last_name, userObj.rating); */
     this.apiService.postJob(this.form.value.title, this.form.value.description,this.form.value.category,
+      this.currentCategory, this.form.value.subcategory, this.currentSubcategory,
       this.address, this.latitude, this.longitude, userObj.id, userObj.first_name, userObj.last_name, userObj.rating)
     .subscribe((res)=>{
       console.log(res);
       this.router.navigate(['../profile'], { relativeTo: this.route })
     })
+  }
+  onChangeCategory(event:Event){
+    let selectedOptions = event.target['options'];
+    let selectedIndex = selectedOptions.selectedIndex;
+    this.currentCategory = selectedOptions[selectedIndex].text;
+    //console.log(value, text);
+    this.getSubcategories(selectedOptions[selectedIndex].value);
+  }
+  onChangeSubcategory(event:Event){
+    let selectedOptions = event.target['options'];
+    let selectedIndex = selectedOptions.selectedIndex;
+    //console.log(selectedOptions[selectedIndex]);
+    this.currentSubcategory = selectedOptions[selectedIndex].text;
+  }
+  getText(event:Event){
+    let selectedOptions = event.target['options'];
+    let selectedIndex = selectedOptions.selectedIndex;
+    let selectElementText = selectedOptions[selectedIndex].text;
+    console.log(selectElementText,selectedOptions[selectedIndex].value)
   }
 
 }

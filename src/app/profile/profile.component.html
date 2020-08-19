@@ -1,38 +1,67 @@
 
 <div class="container">
     <h1>{{user.first_name}} {{user.last_name}}</h1>
-    <div class="container my-3">
-        <h2>
-            My jobs
-            <a class="btn btn-outline-info" routerLink="../post-job">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
-                </svg>
-            </a>
-        </h2> 
-        <div class="container">
-            <app-user-jobs [userId]="user.id"></app-user-jobs>
-        </div>
-    </div>
-    <div class="container my-3">
-        <div *ngIf="user.is_worker==0">
-            <a routerLink="../create-worker-profile" class="btn btn-info">Register as a worker</a>
-        </div>
-        <div *ngIf="user.is_worker==1">
-            <h3>Worker status: Your application is pending</h3>
-        </div>
-        <div *ngIf="user.is_worker==2">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>Jobs</a>
+          <ng-template ngbNavContent>
             <h3>
-                My services
-                <a class="btn btn-outline-info" routerLink="../post-service">
+                My jobs
+                <a class="btn btn-outline-info" routerLink="../post-job">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
-                </svg>
+                    </svg>
                 </a>
-            </h3>
+            </h3> 
             <div class="container">
-                <app-user-services [userId]="user.id"></app-user-services>
+                <app-user-jobs [userId]="user.id"></app-user-jobs>
             </div>
-        </div>
-    </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>Services</a>
+          <ng-template ngbNavContent>
+            <div *ngIf="user.is_worker==0">
+                <a routerLink="../create-worker-profile" class="btn btn-info">Register as a worker</a>
+            </div>
+            <div *ngIf="user.is_worker==1">
+                <h3>Worker status: Your application is pending</h3>
+            </div>
+            <div *ngIf="user.is_worker==2">
+                <h3>
+                    My services
+                    <a class="btn btn-outline-info" routerLink="../post-service">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
+                    </svg>
+                    </a>
+                </h3>
+                <div class="container">
+                    <app-user-services [userId]="user.id"></app-user-services>
+                </div>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+          <a ngbNavLink>Job Applications</a>
+          <ng-template ngbNavContent>
+              <div class="container">
+                <h3>Job Applications</h3>
+            <app-job-applications [userId]="user.id"></app-job-applications>
+              </div>
+            
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="4">
+            <a ngbNavLink>Service Requests</a>
+            <ng-template ngbNavContent>
+                <div class="container my-3" *ngIf="user.is_worker==2">
+                    <h3>Service Requests</h3>
+                    <app-service-requests [userId]="user.id"></app-service-requests>
+                </div>
+            </ng-template>
+          </li>
+      </ul>
+      
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </div>

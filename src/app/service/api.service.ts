@@ -25,6 +25,20 @@ export class ApiService {
       catchError(this.handleError<any>('getJobs',[]))
     )
   }
+  getCategories(){
+    return this.httpClient.get(`${this.SERVER_URL}/categories`)
+    .pipe(
+      tap(_=> console.log('get categories')),
+      catchError(this.handleError<any>('getCategories',[]))
+    )
+  }
+  getSubcategories(categoryId:string){
+    return this.httpClient.get(`${this.SERVER_URL}/categories/${categoryId}/subcategories`)
+    .pipe(
+      tap(_=> console.log('get subcategories of id: ' + categoryId)),
+      catchError(this.handleError<any>('getSubcategories',[]))
+    )
+  }
   getServices(){
     return this.httpClient.get(`${this.SERVER_URL}/services`)
     .pipe(
@@ -68,11 +82,14 @@ export class ApiService {
       catchError(this.handleError<any>('loginuser',[]))
     )
   }
-  postJob(title,description, category, location, latitude, longitude, userId, firstName, lastName, userRating){
+  postJob(title,description, categoryId,categoryName, subcategoryId, subcategoryName, location, latitude, longitude, userId, firstName, lastName, userRating){
     return this.httpClient.post(`${this.SERVER_URL}/post-job`,{
       title: title,
       description: description,
-      category: category,
+      categoryId: categoryId,
+      categoryName: categoryName,
+      subcategoryId: subcategoryId,
+      subcategoryName: subcategoryName,
       location: location,
       latitude: latitude,
       longitude:longitude,
@@ -88,9 +105,9 @@ export class ApiService {
       catchError(this.handleError<any>('postJob',[]))
     )
   }
-  postService(title, description, category, priceRange, location, latitude, longitude, userId, firstName, lastName, userRating){
+  postService(title, description, categoryId,categoryName,subcategoryId,subcategoryName, priceRange, location, latitude, longitude, userId, firstName, lastName, userRating){
     return this.httpClient.post(`${this.SERVER_URL}/post-service`,{
-      title, description, category, priceRange, location, latitude, longitude, userId, firstName, lastName, userRating
+      title, description, categoryId,categoryName,subcategoryId,subcategoryName, priceRange, location, latitude, longitude, userId, firstName, lastName, userRating
     })
   }
   getUserServices(userId){
@@ -111,7 +128,60 @@ export class ApiService {
       catchError(this.handleError<any>('getUserJobs',[]))
     )
   }
+  getJobApplications(userId){
+    return this.httpClient.get(`${this.SERVER_URL}/users/${userId}/job-applications`)
+    .pipe(
+      tap( 
+        _=> {
+          console.log('get job applications of user id' + userId )}),
+      catchError(this.handleError<any>('getJobApplications',[]))
+    )
+  }
+  getServiceRequests(userId){
+    return this.httpClient.get(`${this.SERVER_URL}/users/${userId}/service-requests`)
+    .pipe(
+      tap( 
+        _=> {
+          console.log('get job applications of user id' + userId )}),
+      catchError(this.handleError<any>('getUserJobs',[]))
+    )
+  }
+  getJobBookings(jobId){
+    return this.httpClient.get(`${this.SERVER_URL}/jobs/${jobId}/bookings`)
+    .pipe(
+      tap( 
+        _=> {
+          console.log('get bookings of jobid ' + jobId )}),
+      catchError(this.handleError<any>('getJobBookings',[]))
+    )
+  }
 
+  getServiceBookings(serviceId){
+    return this.httpClient.get(`${this.SERVER_URL}/services/${serviceId}/bookings`)
+    .pipe(
+      tap( 
+        _=> {
+          console.log('get bookings of serviceId ' + serviceId )}),
+      catchError(this.handleError<any>('getServiceBookings',[]))
+    )
+  }
+
+  postBooking(clientId, workerId, serviceId, jobId, price){
+    return this.httpClient.post(`${this.SERVER_URL}/post-booking`,{
+      clientId, workerId, serviceId, jobId, price
+    })
+    .pipe(
+      tap( 
+        _=> {
+          console.log('post booking' )}),
+      catchError(this.handleError<any>('postBooking',[]))
+    )
+  }
+  putBookingStatus(bookingId, status){
+    return this.httpClient.put(`${this.SERVER_URL}/update-booking-status`,{
+      bookingId, status
+    })
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

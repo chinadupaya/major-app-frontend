@@ -3,3 +3,40 @@
     <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
   </svg>{{service.location}}</span>
 <p>{{service.description}}</p>
+
+<button (click)="bookService()" class="btn btn-primary">Request for service</button>
+<div class="container" *ngIf="service.user_id == user.id">
+  <h3>Service Requests</h3>
+  <ul class="list-group">
+      <li class="list-group-item" *ngFor="let booking of bookings">
+          <div class="row">
+              <div class="col-8">
+                  Php{{booking.price}}
+                  Status: {{booking.status}}
+                  <span *ngIf="booking.status==0" class="text-info">Waiting for Approval</span>
+                  <span *ngIf="booking.status==1" class="text-info">In Progress</span>
+                  <span *ngIf="booking.status==2" class="text-danger">Cancelled</span>
+                  <span *ngIf="booking.status==3" class="text-success">Completed</span>
+              </div>
+              <div class="col-4" *ngIf="booking.status==0">
+                  <button class="btn btn-outline-warning mr-1" >Message</button>
+                  <button class="btn btn-outline-primary mr-1" (click)="updateBooking(booking.id,1)">Approve</button>
+                  <button class="btn btn-outline-danger" (click)="updateBooking(booking.id,2)">Cancel</button>
+              </div>
+              <div class="col-4" *ngIf="booking.status==1">
+                <button class="btn btn-outline-warning mr-1" >Message</button>
+                <button class="btn btn-outline-success mr-1" (click)="updateBooking(booking.id,3)">Mark Complete</button>
+                <button class="btn btn-outline-danger" (click)="updateBooking(booking.id,2)">Cancel</button>
+              </div>
+              <div class="col-4" *ngIf="booking.status==2">
+                <p class="text-danger">Cancelled service</p>
+              </div>
+              <div class="col-4" *ngIf="booking.status==3">
+                <p class="text-success">Completed Service</p>
+              </div>
+          </div>
+          
+          
+      </li>
+  </ul>
+</div>
