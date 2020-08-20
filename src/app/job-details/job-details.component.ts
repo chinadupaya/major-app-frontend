@@ -57,5 +57,12 @@ export class JobDetailsComponent implements OnInit {
       client_id:this.job.user_id, worker_id:userObj.id,service_id:"",job_id:this.job.id, price:this.form.value.price, status:0
     })
   }
+  updateBooking(id, status){
+    this.apiService.putBookingStatus(id,+status)
+    .subscribe((res)=>{
+      console.log(res);
+      this.fetchJobBookings(this.job.id);
+    })
+  }
 
 }

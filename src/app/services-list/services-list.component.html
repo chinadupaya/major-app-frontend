@@ -1,4 +1,72 @@
 <h1>Services</h1>
+<form [formGroup]="form" (submit)="onSubmit()" class="mb-3">
+    <div class="form-group">
+        <label for="formLocation">
+            Location
+        </label>
+        <input 
+            class="form-control" 
+            formControlName="address" 
+            ngx-google-places-autocomplete 
+            #placesRef="ngx-places" 
+            (onAddressChange)="handleAddressChange($event)">
+    </div>
+    <div class="slidecontainer form-group">
+        <label for="formRange">
+            Radius in km {{distance}}
+        </label>
+        <input type="range" 
+            #ref 
+            (change)="changeDistance(ref.value)" 
+            min="0" max="50" 
+            formControlName="distance"
+            class="slider" 
+            id="formRange">
+    </div>
+    <div class="form-group">
+        <label for="formTitle">Title</label>
+        <input type="text" id="formTitle" formControlName="title" class="form-control" placeholder="Search in results"/>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="formCategory">Category</label>
+                <select class="form-control" id="formCategory" formControlName="category" (change)="onChangeCategory($event)">
+                    <option value="">All</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                </select>
+            </div>
+            
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="formSubcategory">Sub Category</label>
+                <select class="form-control" id="formSubcategory" 
+                formControlName="subcategory"
+                (change)="onChangeSubcategory($event)" >
+                    <option value="">All</option>
+                    <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{subcategory.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label for="formSort">Sort by</label>
+                <select type="text" id="formSort" formControlName="sortBy" class="form-control">
+                    <option value="date_ascending">Date Ascending</option>
+                    <option value="date_descending">Date Descending</option>
+                    <option value="price_ascending">Price Ascending</option>
+                    <option value="price_descending">Price Descending</option>
+                </select>
+            </div>
+        </div>
+        
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+</form>
 <div *ngIf="services.length > 0">
     <ul class="list-group">
         <li *ngFor="let service of services" class="list-group-item">
@@ -20,6 +88,14 @@
             <a class="text-info">{{service.first_name}} {{service.last_name}}</a>
         </li>
     </ul>
+    <div class="row justify-content-center mt-3">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><button class="page-link" (click)="prevPage()">Previous</button></li>
+              <li class="page-item"><button class="page-link" (click)="nextPage()">Next</button></li>
+            </ul>
+        </nav>
+    </div>
 </div>
 <div *ngIf="services.length==0">
     There are no services here!

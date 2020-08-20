@@ -32,8 +32,6 @@
                 <div class="form-group">
                     <label for="formCategory">Category</label>
                     <select class="form-control" id="formCategory" formControlName="category" (change)="onChangeCategory($event)">
-                    <!-- <select class="form-control" id="formCategory" formControlName="category" 
-                    #categorySelect (change)="onChangeCategory(categorySelect.value, categorySelect)"> -->
                         <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                     </select>
                 </div>

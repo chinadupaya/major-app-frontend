@@ -25,6 +25,34 @@ export class ApiService {
       catchError(this.handleError<any>('getJobs',[]))
     )
   }
+  filterJobs(distance, title, categoryId, subcategoryId, latitude, longitude, sortBy, pageNum){
+    var queryString="";
+    if (pageNum){
+      queryString+=`pageNum=${pageNum}`
+    }else{
+      queryString+=`pageNum=1`
+    }
+    queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&latitude=${latitude}&longitude=${longitude}&distance=${distance*1000}`
+    return this.httpClient.get(`${this.SERVER_URL}/jobs?${queryString}`)
+    .pipe(
+      tap(_=> console.log('get jobs')),
+      catchError(this.handleError<any>('getJobs',[]))
+    )
+  }
+  filterServices(distance, title, categoryId, subcategoryId, latitude, longitude, sortBy, pageNum){
+    var queryString="";
+    if (pageNum){
+      queryString+=`pageNum=${pageNum}`
+    }else{
+      queryString+=`pageNum=1`
+    }
+    queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&latitude=${latitude}&longitude=${longitude}&distance=${distance*1000}`
+    return this.httpClient.get(`${this.SERVER_URL}/services?${queryString}`)
+    .pipe(
+      tap(_=> console.log('get jobs')),
+      catchError(this.handleError<any>('getJobs',[]))
+    )
+  }
   getCategories(){
     return this.httpClient.get(`${this.SERVER_URL}/categories`)
     .pipe(
@@ -184,13 +212,10 @@ export class ApiService {
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-  
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
-  
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

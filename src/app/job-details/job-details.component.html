@@ -1,31 +1,52 @@
 <h1>{{job.title}}</h1>
 <span>{{job.location}}</span>
 <p>{{job.description}}</p>
-<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="job.user_id != user.id">
-    <label class="sr-only" for="inlineFormInputGroupUsername2">Price</label>
-    <div class="input-group mb-2 mr-sm-2">
-        <div class="input-group-prepend">
-        <div class="input-group-text">Php</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()"> <!-- *ngIf="job.user_id != user.id" -->
+    <div class="row">
+        <div class="col-md-4 col-12">
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Price</label>
+            <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                <div class="input-group-text">Php</div>
+                </div>
+                <input type="number" min="1" formControlName="price" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Price">
+            </div>
         </div>
-        <input type="number" min="1" formControlName="price" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Price">
     </div>
+    
     <button type="submit" class="btn btn-primary">Apply for this job</button>
 </form>
-<div class="container" *ngIf="job.user_id == user.id">
+<div class="container" ><!-- *ngIf="job.user_id == user.id" -->
     <h3>Job Applications</h3>
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let booking of bookings">
             <div class="row">
                 <div class="col-8">
-                    Php{{booking.price}}
-                    Status: {{booking.status}}
+                    Php{{booking.price}} <br/>
+                    Status: 
+                    <span *ngIf="booking.status==0" class="text-info">Waiting for Approval</span>
+                    <span *ngIf="booking.status==1" class="text-info">In Progress</span>
+                    <span *ngIf="booking.status==2" class="text-danger">Cancelled</span>
+                    <span *ngIf="booking.status==3" class="text-success">Completed</span>
                 </div>
-                <div class="col-4">
-                    <button class="btn btn-outline-warning mr-1">Message</button>
-                    <button class="btn btn-outline-primary mr-1">Approve</button>
-                    <button class="btn btn-outline-danger">Cancel</button>
+                <div class="col-4" *ngIf="booking.status==0">
+                    <button class="btn btn-outline-warning mr-1" >Message</button>
+                    <button class="btn btn-outline-primary mr-1" (click)="updateBooking(booking.id,1)">Approve</button>
+                    <button class="btn btn-outline-danger" (click)="updateBooking(booking.id,2)">Cancel</button>
+                </div>
+                <div class="col-4" *ngIf="booking.status==1">
+                  <button class="btn btn-outline-warning mr-1" >Message</button>
+                  <button class="btn btn-outline-success mr-1" (click)="updateBooking(booking.id,3)">Mark Complete</button>
+                  <button class="btn btn-outline-danger" (click)="updateBooking(booking.id,2)">Cancel</button>
+                </div>
+                <div class="col-4" *ngIf="booking.status==2">
+                  <p class="text-danger">Cancelled service</p>
+                </div>
+                <div class="col-4" *ngIf="booking.status==3">
+                  <p class="text-success">Completed Service</p>
                 </div>
             </div>
+            
             
             
         </li>
