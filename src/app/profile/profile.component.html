@@ -11,6 +11,7 @@
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
                     </svg>
+                    Post Job
                 </a>
             </h3> 
             <div class="container">
@@ -33,7 +34,8 @@
                     <a class="btn btn-outline-info" routerLink="../post-service">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
-                    </svg>
+                        </svg>
+                        Post Service
                     </a>
                 </h3>
                 <div class="container">
@@ -47,7 +49,7 @@
           <ng-template ngbNavContent>
               <div class="container">
                 <h3>Job Applications</h3>
-            <app-job-applications [userId]="user.id"></app-job-applications>
+                <app-job-applications [userId]="user.id"></app-job-applications>
               </div>
             
           </ng-template>
@@ -55,7 +57,7 @@
         <li [ngbNavItem]="4">
             <a ngbNavLink>Service Requests</a>
             <ng-template ngbNavContent>
-                <div class="container my-3" *ngIf="user.is_worker==2">
+                <div class="container" *ngIf="user.is_worker==2">
                     <h3>Service Requests</h3>
                     <app-service-requests [userId]="user.id"></app-service-requests>
                 </div>

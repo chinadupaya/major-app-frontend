@@ -35,8 +35,8 @@ export class ApiService {
     queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&latitude=${latitude}&longitude=${longitude}&distance=${distance*1000}`
     return this.httpClient.get(`${this.SERVER_URL}/jobs?${queryString}`)
     .pipe(
-      tap(_=> console.log('get jobs')),
-      catchError(this.handleError<any>('getJobs',[]))
+      tap(_=> console.log('filter jobs')),
+      catchError(this.handleError<any>('filterJobs',[]))
     )
   }
   filterServices(distance, title, categoryId, subcategoryId, latitude, longitude, sortBy, pageNum){
@@ -49,8 +49,8 @@ export class ApiService {
     queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&latitude=${latitude}&longitude=${longitude}&distance=${distance*1000}`
     return this.httpClient.get(`${this.SERVER_URL}/services?${queryString}`)
     .pipe(
-      tap(_=> console.log('get jobs')),
-      catchError(this.handleError<any>('getJobs',[]))
+      tap(_=> console.log('filter services')),
+      catchError(this.handleError<any>('filterServices',[]))
     )
   }
   getCategories(){

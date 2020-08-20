@@ -106,5 +106,22 @@ export class ServicesListComponent implements OnInit {
     //console.log(val);
     this.distance= val;
   }
-
+  clearFilters(){
+    this.apiService.getServices()
+    .subscribe((services)=>{
+      this.services = services.data;
+    })
+    this.address="";
+    this.latitude=0;
+    this.longitude=0;
+    this.distance = 25;
+    this.form = this.formBuilder.group({
+      address:'',
+      title: '',
+      category:'',
+      subcategory:'',
+      sortBy: 'date_ascending',
+      distance: 25
+    })
+  }
 }
