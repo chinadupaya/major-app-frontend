@@ -63,6 +63,15 @@
                 </div>
             </ng-template>
           </li>
+        <li [ngbNavItem]="5">
+            <a ngbNavLink>Reviews</a>
+            <ng-template ngbNavContent>
+                <div class="container">
+                    <h3>Reviews</h3>
+                    <app-user-reviews [userId]="user.id"></app-user-reviews>
+                </div>
+            </ng-template>
+        </li>
       </ul>
       
       <div [ngbNavOutlet]="nav" class="mt-2"></div>

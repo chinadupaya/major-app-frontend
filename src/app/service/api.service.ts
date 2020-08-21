@@ -156,6 +156,15 @@ export class ApiService {
       catchError(this.handleError<any>('getUserJobs',[]))
     )
   }
+  getUserReviews(userId){
+    return this.httpClient.get(`${this.SERVER_URL}/users/${userId}/reviews`)
+    .pipe(
+      tap( 
+        _=> {
+          console.log('get user reviews of id' + userId )}),
+      catchError(this.handleError<any>('getUserReviews',[]))
+    )
+  }
   getJobApplications(userId){
     return this.httpClient.get(`${this.SERVER_URL}/users/${userId}/job-applications`)
     .pipe(
@@ -183,7 +192,6 @@ export class ApiService {
       catchError(this.handleError<any>('getJobBookings',[]))
     )
   }
-
   getServiceBookings(serviceId){
     return this.httpClient.get(`${this.SERVER_URL}/services/${serviceId}/bookings`)
     .pipe(
@@ -193,8 +201,19 @@ export class ApiService {
       catchError(this.handleError<any>('getServiceBookings',[]))
     )
   }
-
+  postReview(reviewerId, firstName, lastName,rating, content,reviewedId){
+    return this.httpClient.post(`${this.SERVER_URL}/post-review`,{
+      reviewerId, firstName, lastName,rating, content,reviewedId
+    })
+    .pipe(
+      tap( 
+        _=> {
+          console.log('post Review' )}),
+      catchError(this.handleError<any>('postReview',[]))
+    )
+  }
   postBooking(clientId, workerId, serviceId, jobId, price){
+    console.log(clientId, workerId, serviceId, jobId, price);
     return this.httpClient.post(`${this.SERVER_URL}/post-booking`,{
       clientId, workerId, serviceId, jobId, price
     })
@@ -210,6 +229,7 @@ export class ApiService {
       bookingId, status
     })
   }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

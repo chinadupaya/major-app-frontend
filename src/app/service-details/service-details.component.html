@@ -4,7 +4,7 @@
   </svg>{{service.location}}</span>
 <p>{{service.description}}</p>
 
-<button (click)="bookService()" class="btn btn-primary">Request for service</button>
+<button (click)="bookService()" class="btn btn-primary" *ngIf="service.user_id != user.id">Request for service</button>
 <div class="container" *ngIf="service.user_id == user.id">
   <h3>Service Requests</h3>
   <ul class="list-group">

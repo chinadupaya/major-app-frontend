@@ -1,7 +1,7 @@
 <h1>{{job.title}}</h1>
 <span>{{job.location}}</span>
 <p>{{job.description}}</p>
-<form [formGroup]="form" (ngSubmit)="onSubmit()"> <!-- *ngIf="job.user_id != user.id" -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="job.user_id != user.id">
     <div class="row">
         <div class="col-md-4 col-12">
             <label class="sr-only" for="inlineFormInputGroupUsername2">Price</label>
@@ -16,8 +16,10 @@
     
     <button type="submit" class="btn btn-primary">Apply for this job</button>
 </form>
-<div class="container" ><!-- *ngIf="job.user_id == user.id" -->
+<div class="container" *ngIf="job.user_id == user.id" >
     <h3>Job Applications</h3>
+      
+      
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let booking of bookings">
             <div class="row">
@@ -41,14 +43,26 @@
                 </div>
                 <div class="col-4" *ngIf="booking.status==2">
                   <p class="text-danger">Cancelled service</p>
+                  <button class="btn btn-outline-success" (click)="open(content)">Leave a Review</button>
                 </div>
                 <div class="col-4" *ngIf="booking.status==3">
                   <p class="text-success">Completed Service</p>
+                  <button class="btn btn-outline-success" (click)="open(content)">Leave a Review</button>
                 </div>
             </div>
-            
-            
-            
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Leave a review</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                <app-post-review [booking]="booking"></app-post-review>
+                
+            </ng-template>
         </li>
+        
+        
     </ul>
+    <pre>{{ closeResult }}</pre>
 </div>
