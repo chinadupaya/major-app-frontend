@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet');
+$green: #62dbc7;
+$light-grey: #f2eded;
+$dark-grey: #403f3d;
+$success: $green;
+$primary: $light-grey;
+$secondary: $dark-grey;
+body {
+  font-family: "Inter", sans-serif !important;
+}
+@import "~bootstrap/scss/bootstrap";
