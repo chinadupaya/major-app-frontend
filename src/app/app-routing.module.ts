@@ -18,16 +18,16 @@ const routes: Routes = [
   { path: 'home', component: LandingComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'create-worker-profile', component: CreateWorkerProfileComponent },
-  { path: 'post-job', component: PostJobComponent},
-  { path: 'jobs', component: JobsListComponent},
-  { path: 'services', component: ServicesListComponent},
-  { path: 'post-service', component: PostServiceComponent},
-  { path: 'jobs/:id', component: JobDetailsComponent},
-  { path: 'services/:id', component: ServiceDetailsComponent}
+  { path: 'post-job', component: PostJobComponent },
+  { path: 'jobs', component: JobsListComponent },
+  { path: 'services', component: ServicesListComponent },
+  { path: 'post-service', component: PostServiceComponent },
+  { path: 'jobs/:id', component: JobDetailsComponent },
+  { path: 'services/:id', component: ServiceDetailsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

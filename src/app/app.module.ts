@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateWorkerProfileComponent } from './create-worker-profile/create-worker-profile.component';
 import { PostJobComponent } from './post-job/post-job.component';
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { PostServiceComponent } from './post-service/post-service.component';
 import { ServicesListComponent } from './services-list/services-list.component';
@@ -47,18 +47,18 @@ import { UserReviewsComponent } from './user-reviews/user-reviews.component';
     JobApplicationsComponent,
     ServiceRequestsComponent,
     PostReviewComponent,
-    UserReviewsComponent
+    UserReviewsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    GooglePlaceModule
+    GooglePlaceModule,
   ],
   providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
