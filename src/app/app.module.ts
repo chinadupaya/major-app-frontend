@@ -26,6 +26,7 @@ import { JobApplicationsComponent } from './profile/job-applications/job-applica
 import { ServiceRequestsComponent } from './profile/service-requests/service-requests.component';
 import { PostReviewComponent } from './post-review/post-review.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
+import { TestComponentComponent } from './test-component/test-component.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { UserReviewsComponent } from './user-reviews/user-reviews.component';
     JobApplicationsComponent,
     ServiceRequestsComponent,
     PostReviewComponent,
-    UserReviewsComponent
+    UserReviewsComponent,
+    TestComponentComponent
   ],
   imports: [
     BrowserModule,
