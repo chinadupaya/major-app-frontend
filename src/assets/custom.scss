@@ -49,6 +49,62 @@ body {
   }
 }
 
+.create-worker-form {
+  & .col-12 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    & h3 {
+      width: 30%;
+      min-width: 250px;
+    }
+
+    &.actions {
+      flex-direction: column;
+    }
+  }
+}
+
+.custom-stepper {
+  & .col-3 {
+    padding: 0;
+  }
+
+  & .checkpoint {
+    z-index: 10;
+
+    & .circle {
+      height: 40px;
+      width: 40px;
+      background-color: #bbb;
+      border-radius: 50%;
+      padding: 0;
+      margin: 0 -10px 0 -10px;
+    }
+
+    & .circle-primary {
+      background-color: $primary;
+    }
+
+    & .description,
+    & img {
+      margin-top: 5px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      margin-left: calc(-1 * calc(10% - 10px));
+      width: 20%;
+      text-align: center;
+    }
+  }
+}
+
+.stepper-image {
+  width: 20%;
+  margin: 0 5% 0 5%;
+}
+
 .bold-label-form .form-group label {
   font-weight: bold;
 }
