@@ -1,11 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet');
 $green: #62dbc7;
+$dark-green: #52c0c0;
 $light-grey: #f2eded;
 $dark-grey: #403f3d;
 $success: $green;
-$primary: $light-grey;
-$secondary: $dark-grey;
+$primary: $green;
+$secondary: $light-grey;
 body {
   font-family: "Inter", sans-serif !important;
 }
 @import "~bootstrap/scss/bootstrap";
+
+.gradient-green {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from($green),
+    to($dark-green)
+  );
+  background-image: linear-gradient(90deg, $green, $dark-green);
+}
+
+.gradient-green-inverted {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from($dark-green),
+    to($green)
+  );
+  background-image: linear-gradient(90deg, $dark-green, $green);
+}
+
+.flex-form .form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & label {
+    margin-bottom: 0;
+    width: 20%;
+    min-width: 150px;
+  }
+
+  &.actions {
+    flex-direction: column;
+  }
+}
+
+.bold-label-form .form-group label {
+  font-weight: bold;
+}
+
+.list-group-item-link {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  & .list-group-item {
+    &:hover {
+      border-color: $primary;
+    }
+  }
+}
+
+.nav-tabs.landing-nav {
+  & a {
+    color: $dark-green;
+    font-weight: bold;
+  }
+}
+
+.landing-image {
+  width: 50%;
+  max-width: 400px;
+  max-height: 400px;
+}

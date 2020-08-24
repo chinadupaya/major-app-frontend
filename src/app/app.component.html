@@ -1,7 +1,20 @@
 
 
 <app-nav></app-nav>
+<section class="gradient-green" *ngIf="routerObject.url == '/jobs'">
+  <div class="container py-5">
+    <h1 class="text-white text-underline">
+      Available Jobs
+    </h1>
+  </div>
+</section>
+<section class="gradient-green-inverted" *ngIf="routerObject.url == '/services'">
+  <div class="container py-5">
+    <h1 class="text-white text-underline">
+      Available Services
+    </h1>
+  </div>
+</section>
 <div class="container mt-3">
   <router-outlet></router-outlet>
 </div>
-<app-test-component></app-test-component>
