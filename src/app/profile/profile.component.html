@@ -23,10 +23,99 @@
           <a ngbNavLink>Services</a>
           <ng-template ngbNavContent>
             <div *ngIf="user.is_worker==0">
-                <a routerLink="../create-worker-profile" class="btn btn-info">Register as a worker</a>
+                <h3 class="text-center my-4">Get started with your journey with us as a worker.</h3>
+
+                <div class="d-flex justify-content-center my-4">
+                    <a routerLink="../create-worker-profile" class="btn btn-info">Register as a worker</a>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="/assets/images/documents.png" class="stepper-image"/>
+                    <img src="/assets/images/approve.png" class="stepper-image"/>
+                    <img src="/assets/images/plans.png" class="stepper-image"/>
+                </div>
+                <div class="d-flex custom-stepper justify-content-center align-items-center mt-4 mb-5">
+                    <div class="col-3">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="checkpoint">
+                        <div class="circle"> </div>
+                        <div class="description">
+                            Submit Documents
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="checkpoint">
+                        <div class="circle"> </div>
+                        <div class="description">
+                            Approved as a Worker
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="checkpoint">
+                        <div class="circle"> </div>
+                        <div class="description">
+                            Start Working!
+                        </div>
+                    </div>
+                </div>
             </div>
             <div *ngIf="user.is_worker==1">
-                <h3>Worker status: Your application is pending</h3>
+                <h3 class="text-center my-4">Almost there! Your application is pending for approval.</h3>
+
+                
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="/assets/images/documents.png" class="stepper-image"/>
+                    <img src="/assets/images/approve.png" class="stepper-image"/>
+                    <img src="/assets/images/plans.png" class="stepper-image"/>
+                </div>
+                <div class="d-flex custom-stepper justify-content-center align-items-center mb-5">
+                    <div class="col-3">
+                        <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="checkpoint">
+                        <div class="circle circle-primary"> 
+                        </div>
+                        <div class="description">
+                            Submit Documents
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="checkpoint">
+                        <div class="circle"> 
+                        </div>
+                        <div class="description">
+                            Approved as a Worker
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="checkpoint">
+                        <div class="circle"> 
+                        </div>
+                        <div class="description">
+                           Start Working!
+                        </div>
+                    </div>
+                </div>
             </div>
             <div *ngIf="user.is_worker==2">
                 <h3>
@@ -57,7 +146,7 @@
         <li [ngbNavItem]="4">
             <a ngbNavLink>Service Requests</a>
             <ng-template ngbNavContent>
-                <div class="container" *ngIf="user.is_worker==2">
+                <div class="container">
                     <h3>Service Requests</h3>
                     <app-service-requests [userId]="user.id"></app-service-requests>
                 </div>

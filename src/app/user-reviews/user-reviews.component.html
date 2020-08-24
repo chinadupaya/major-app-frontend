@@ -1,12 +1,12 @@
 <div *ngIf="reviews.length==0">
-    <p class="text-secondary">There are no reviews for this listing</p>
+    <p class="text-info">There are no reviews for this user</p>
 </div>
 <div *ngIf="reviews.length>0">
     <div class="row">
         <div class="col-md-6" *ngFor="let review of reviews">
             <div class="card">
                 <div class="card-body">
-                    <strong><a class="text-info" routerLink="../../users/{{review.user_id}}">{{review.first_name}} {{review.last_name}}</a></strong>
+                    <strong><a class="text-info" routerLink="../users/{{review.reviewer_id}}">{{review.first_name}} {{review.last_name}}</a></strong>
                     <div class="card-title">
                         {{review.rating}}
                         <ng-container *ngFor="let i of [].constructor(review.rating_num)">

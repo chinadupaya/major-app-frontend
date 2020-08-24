@@ -11,6 +11,8 @@ import { ServicesListComponent } from './services-list/services-list.component';
 import { PostServiceComponent } from './post-service/post-service.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'signup', component: RegisterComponent },
@@ -18,16 +20,17 @@ const routes: Routes = [
   { path: 'home', component: LandingComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'create-worker-profile', component: CreateWorkerProfileComponent },
-  { path: 'post-job', component: PostJobComponent},
-  { path: 'jobs', component: JobsListComponent},
-  { path: 'services', component: ServicesListComponent},
-  { path: 'post-service', component: PostServiceComponent},
-  { path: 'jobs/:id', component: JobDetailsComponent},
-  { path: 'services/:id', component: ServiceDetailsComponent}
+  { path: 'post-job', component: PostJobComponent },
+  { path: 'jobs', component: JobsListComponent },
+  { path: 'services', component: ServicesListComponent },
+  { path: 'post-service', component: PostServiceComponent },
+  { path: 'jobs/:id', component: JobDetailsComponent },
+  { path: 'services/:id', component: ServiceDetailsComponent },
+  { path: 'users/:id', component: UserProfileComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

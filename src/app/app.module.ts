@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateWorkerProfileComponent } from './create-worker-profile/create-worker-profile.component';
 import { PostJobComponent } from './post-job/post-job.component';
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { PostServiceComponent } from './post-service/post-service.component';
 import { ServicesListComponent } from './services-list/services-list.component';
@@ -27,7 +27,7 @@ import { ServiceRequestsComponent } from './profile/service-requests/service-req
 import { PostReviewComponent } from './post-review/post-review.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 import { DataGraphsComponent } from './data-graphs/data-graphs.component';
-
+import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,18 +49,19 @@ import { DataGraphsComponent } from './data-graphs/data-graphs.component';
     ServiceRequestsComponent,
     PostReviewComponent,
     UserReviewsComponent,
-    DataGraphsComponent
+    DataGraphsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    GooglePlaceModule
+    GooglePlaceModule,
   ],
   providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

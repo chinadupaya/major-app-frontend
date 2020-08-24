@@ -32,7 +32,14 @@ export class ApiService {
     }else{
       queryString+=`pageNum=1`
     }
-    queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&latitude=${latitude}&longitude=${longitude}&distance=${distance*1000}`
+    //latitude=${latitude}&longitude=${longitude}
+    if(latitude){
+      queryString+=`&latitude=${latitude}`
+    }
+    if(longitude){
+      queryString+=`&longitude=${longitude}`
+    }
+    queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&distance=${distance*1000}`
     return this.httpClient.get(`${this.SERVER_URL}/jobs?${queryString}`)
     .pipe(
       tap(_=> console.log('filter jobs')),
@@ -46,7 +53,13 @@ export class ApiService {
     }else{
       queryString+=`pageNum=1`
     }
-    queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&latitude=${latitude}&longitude=${longitude}&distance=${distance*1000}`
+    if(latitude){
+      queryString+=`&latitude=${latitude}`
+    }
+    if(longitude){
+      queryString+=`&longitude=${longitude}`
+    }
+    queryString+=`&title=${title}&categoryId=${categoryId}&subcategoryId=${subcategoryId}&sortBy=${sortBy}&distance=${distance*1000}`
     return this.httpClient.get(`${this.SERVER_URL}/services?${queryString}`)
     .pipe(
       tap(_=> console.log('filter services')),

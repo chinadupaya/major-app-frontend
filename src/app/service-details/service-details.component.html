@@ -12,7 +12,6 @@
           <div class="row">
               <div class="col-8">
                   Php{{booking.price}}
-                  Status: {{booking.status}}
                   <span *ngIf="booking.status==0" class="text-info">Waiting for Approval</span>
                   <span *ngIf="booking.status==1" class="text-info">In Progress</span>
                   <span *ngIf="booking.status==2" class="text-danger">Cancelled</span>
@@ -33,9 +32,19 @@
               </div>
               <div class="col-4" *ngIf="booking.status==3">
                 <p class="text-success">Completed Service</p>
+                <button class="btn btn-outline-success" (click)="open(content)">Leave a Review</button>
               </div>
           </div>
-          
+          <ng-template #content let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Leave a review</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <app-post-review [booking]="booking"></app-post-review>
+            
+        </ng-template>
           
       </li>
   </ul>

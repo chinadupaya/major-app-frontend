@@ -1,1 +1,77 @@
-<p>landing works!</p>
+<h1 class="pt-5 text-center"> 
+    <u> 
+        How It Works 
+    </u> 
+</h1>
+
+<div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs landing-nav mt-5 d-flex justify-content-around">
+    <div [ngbNavItem]="1">
+        <a ngbNavLink>
+            <h4>
+                Looking for a Job
+            </h4>
+        </a>
+        <ng-template ngbNavContent>
+            <div class="d-flex flex-column mt-5">
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    <img src="/assets/images/upload.png" class="landing-image col-md-6 col-12 order-md-2 order-2"/>
+                    <h4 class="col-md-6 col-12 text-center order-md-1 order-1">
+                        Submit Documents & Apply as a Worker
+                    </h4>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    <img src="/assets/images/post.png" class="landing-image col-md-6 col-12 order-md-1 order-2"/>
+                    <h4 class="col-md-6 col-12 text-center order-md-2 order-1">
+                        Post Your Service
+                    </h4>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    <img src="/assets/images/search.png" class="landing-image col-md-6 col-12 order-md-2 order-2"/>
+                    <h4 class="col-md-6 col-12 text-center order-md-1 order-1">
+                        Search Suitable Jobs
+                    </h4>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    <img src="/assets/images/select.png" class="landing-image col-md-6 col-12 order-md-1 order-2"/>
+                    <h4 class="col-md-6 col-12 text-center order-md-2 order-1">
+                        Select Clients Requesting Your Service or
+                        Apply for Selected Jobs
+                    </h4>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+    <div [ngbNavItem]="2">
+        <a ngbNavLink>
+            <h4>
+                Looking for a Service
+            </h4>
+        </a>
+        <ng-template ngbNavContent>
+            <div class="d-flex flex-column mt-5">
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    <img src="/assets/images/post2.png" class="landing-image col-md-6 col-12 order-md-2 order-2"/>
+                    <h4 class="col-md-6 col-12 text-center order-md-1 order-1">
+                        Post Your Job Description
+                    </h4>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    <img src="/assets/images/search2.png" class="landing-image col-md-6 col-12 order-md-1 order-2"/>
+                    <h4 class="col-md-6 col-12 text-center order-md-2 order-1">
+                        Search Suitable Services
+                    </h4>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around align-items-center">
+                    <img src="/assets/images/select2.png" class="landing-image col-md-6 col-12 order-md-2 order-2"/>
+                    <h4 class="col-md-6 col-12 text-center order-md-1 order-1">
+                        Select Amongst Workers Applying for Your Job or
+                        Request from Selected Services
+                    </h4>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+<!-- <app-data-graphs></app-data-graphs> -->

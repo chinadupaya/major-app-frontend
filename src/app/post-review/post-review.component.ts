@@ -3,6 +3,7 @@ import { ApiService } from '../service/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-review',
@@ -18,7 +19,9 @@ export class PostReviewComponent implements OnInit {
   constructor(private apiService: ApiService,
     private formBuilder: FormBuilder,
     private cookieService: CookieService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private router:Router,
+    private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.user=JSON.parse(this.cookieService.get('Test'));
@@ -45,11 +48,22 @@ export class PostReviewComponent implements OnInit {
   }
   onSubmit(){
     //console.log(this.form.value);
-    this.apiService.postReview(this.user.id,this.user.first_name, 
-      this.user.last_name, this.form.value.ratingNum,this.form.value.content, this.booking.worker_id)
-      .subscribe((response)=>{
-        console.log(response);
-      })
+    if(this.user.id == this.booking.worker_id){
+      this.apiService.postReview(this.user.id,this.user.first_name, 
+        this.user.last_name, this.form.value.ratingNum,this.form.value.content, this.booking.client_id)
+        .subscribe((response)=>{
+          console.log(response);
+          this.router.navigate(['/profile'], { relativeTo: this.route });
+        })
+    }else{
+      this.apiService.postReview(this.user.id,this.user.first_name, 
+        this.user.last_name, this.form.value.ratingNum,this.form.value.content, this.booking.worker_id)
+        .subscribe((response)=>{
+          console.log(response);
+          this.router.navigate(['/profile'], { relativeTo: this.route });
+        })
+    }
+    
   }
 
 
