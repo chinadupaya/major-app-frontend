@@ -1,9 +1,15 @@
 <div class="form-group">
-
+    <label for="formCategory">Category</label>
+    <select id="formCategory" 
+    (change)="onChangeCategory($event)" >
+    <option *ngFor="let category of categories" [value]="category">{{category.name}}</option>
+</select>
+    
+<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
     <label for="formSubcategory">Sub Category</label>
     <select class="form-control" id="formSubcategory" 
     (change)="onChangeSubcategory($event)" >
-    <option *ngFor="let subcategory of subcategories" [value]="subcategory">{{subcategory}}</option>
+    <option *ngFor="let subcategory of currentsubcategories" [value]="subcategory">{{subcategory.name}}</option>
 </select>
 </div>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
