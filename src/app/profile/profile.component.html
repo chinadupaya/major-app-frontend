@@ -57,7 +57,7 @@
         <li [ngbNavItem]="4">
             <a ngbNavLink>Service Requests</a>
             <ng-template ngbNavContent>
-                <div class="container" *ngIf="user.is_worker==2">
+                <div class="container">
                     <h3>Service Requests</h3>
                     <app-service-requests [userId]="user.id"></app-service-requests>
                 </div>

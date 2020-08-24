@@ -43,7 +43,6 @@
                 </div>
                 <div class="col-4" *ngIf="booking.status==2">
                   <p class="text-danger">Cancelled service</p>
-                  <button class="btn btn-outline-success" (click)="open(content)">Leave a Review</button>
                 </div>
                 <div class="col-4" *ngIf="booking.status==3">
                   <p class="text-success">Completed Service</p>

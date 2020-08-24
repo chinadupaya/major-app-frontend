@@ -2,7 +2,7 @@
 <div *ngIf="jobs.length > 0">
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let job of jobs">
-            <h4><a class="text-dark" routerLink="../jobs/{{job.id}}">{{job.title}}</a></h4>
+            <h4><a class="text-dark" [routerLink]="['/jobs/',job.id]">{{job.title}}</a></h4>
             <span>{{job.category_name}} >> {{job.subcategory_name}}</span>
             <p>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -14,5 +14,5 @@
     </ul>
 </div>
 <div *ngIf="jobs.length ==0">
-    <h4>You don't have any jobs yet.</h4>
+    <h4>No jobs here yet.</h4>
 </div>

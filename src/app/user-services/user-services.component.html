@@ -3,7 +3,7 @@
         <li class="list-group-item" *ngFor="let service of services">
             <div class="row">
                 <div class="col-8">
-                    <h4><a class="text-dark" routerLink="../services/{{service.id}}">{{service.title}}</a></h4>
+                    <h4><a class="text-dark" [routerLink]="['/services/',service.id]">{{service.title}}</a></h4>
                 </div>
                 <div class="col-4">
                     <h5>Php{{service.price_range}}</h5>
@@ -22,5 +22,5 @@
     </ul>
 </div>
 <div *ngIf="services.length ==0">
-    <h4>You don't have any services yet.</h4>
+    <h4>No services here yet.</h4>
 </div>
