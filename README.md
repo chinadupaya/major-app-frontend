@@ -1,6 +1,8 @@
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
+## Before starting
+Run `npm install` to install all dependencies of the project.
 
 ## Development server
 
