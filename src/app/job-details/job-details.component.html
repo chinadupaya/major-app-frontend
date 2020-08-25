@@ -16,6 +16,11 @@
     
     <button type="submit" class="btn btn-primary">Apply for this job</button>
 </form>
+<hr/>
+<div class="container">
+    <h3>Reviews</h3>
+    <app-user-reviews [userId]="job.user_id"></app-user-reviews>
+</div>
 <div class="container" *ngIf="job.user_id == user.id" >
     <h3>Job Applications</h3>
       
