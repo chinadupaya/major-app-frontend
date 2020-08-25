@@ -12,6 +12,7 @@ import { PostServiceComponent } from './post-service/post-service.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DataGraphsComponent } from './data-graphs/data-graphs.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'jobs/:id', component: JobDetailsComponent },
   { path: 'services/:id', component: ServiceDetailsComponent },
   { path: 'users/:id', component: UserProfileComponent },
+  { path: 'data', component: DataGraphsComponent },
 ];
 
 @NgModule({

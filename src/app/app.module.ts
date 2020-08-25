@@ -27,9 +27,7 @@ import { ServiceRequestsComponent } from './profile/service-requests/service-req
 import { PostReviewComponent } from './post-review/post-review.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 import { DataGraphsComponent } from './data-graphs/data-graphs.component';
-import { TestComponentComponent } from './test-component/test-component.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
 @NgModule({
   declarations: [
     AppComponent,
