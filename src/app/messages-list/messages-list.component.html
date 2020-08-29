@@ -1,0 +1,8 @@
+<div class='sidenav'>
+    <div class="friend-drawer friend-drawer--onhover" *ngFor='let room of rooms' (click)='loadRoom(room.id)'>
+        <div class="text">
+          <h6>{{room.room_name}}</h6>
+        </div>
+        <hr/>
+    </div>
+</div>

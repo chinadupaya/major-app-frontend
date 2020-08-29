@@ -120,7 +120,7 @@ export class ApiService {
       tap( 
         _=> {
           console.log('login User')}),
-      catchError(this.handleError<any>('loginuser',[]))
+      //catchError(this.handleError<any>('loginuser',[]))
     )
   }
   postJob(title,description, categoryId,categoryName, subcategoryId, subcategoryName, location, latitude, longitude, userId, firstName, lastName, userRating){
@@ -243,6 +243,37 @@ export class ApiService {
     })
   }
 
+  joinRoom(userId, chatWith, nameOne, nameTwo){
+    return this.httpClient.post(`${this.SERVER_URL}/create-room`,{
+      userId, chatWith, nameOne, nameTwo
+    })
+    .pipe(
+      tap(_=> console.log('join room ' + userId)),
+      catchError(this.handleError<any>('joinRoom',[]))
+    )
+  };
+  getMessages(roomId){
+    return this.httpClient.get(`${this.SERVER_URL}/rooms/${roomId}/messages`)
+    .pipe(
+      tap(_=> console.log('get messages of room ' + roomId)),
+      catchError(this.handleError<any>('getMessages',[]))
+    )
+  };
+  getChatList(userId){
+    //console.log("getChatList", userId);
+    //this.socket.emit('chatrooms', userId);
+    return this.httpClient.get(`${this.SERVER_URL}/users/${userId}/rooms`)
+    .pipe(
+      tap(_=> console.log('get User id ' + userId)),
+      catchError(this.handleError<any>('getUser',[]))
+    )
+  };
+  postMessage(roomId, content, sentBy){
+    //data.room_id, "text", data.message.sent_by,data.message.content
+    return this.httpClient.post(`${this.SERVER_URL}/create-message`,{
+      roomId, sentBy, content
+    })
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

@@ -1,8 +1,20 @@
-<h1>{{service.title}}</h1>
+<h1>{{service.title}} <button class="btn btn-outline-warning mr-1" (click)="messageWorker()">Message</button></h1>
 <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
   </svg>{{service.location}}</span>
-<p>{{service.description}}</p>
+<hr/>
+<div class="container my-3">
+  <h3>Description</h3>
+  <a class="text-info" routerLink="../../users/{{service.user_id}}">by {{service.first_name}} {{service.last_name}}</a> <br/>
+
+  <p>{{service.description}}</p>
+</div>
+<hr/>
+
+<div class="container">
+  <h3>Reviews</h3>
+  <app-user-reviews [userId]="service.user_id"></app-user-reviews>
+</div>
 
 <button (click)="bookService()" class="btn btn-primary" *ngIf="service.user_id != user.id">Request for service</button>
 <div class="container" *ngIf="service.user_id == user.id">

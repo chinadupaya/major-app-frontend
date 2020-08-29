@@ -24,7 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/custom.scss"
+              "src/assets/custom.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

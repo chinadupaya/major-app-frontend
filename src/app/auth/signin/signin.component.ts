@@ -34,10 +34,18 @@ export class SigninComponent implements OnInit {
     }
     this.loading=true;
     this.apiService.loginUser(this.form.value.email, this.form.value.password)
-    .subscribe(data=> {console.log(data);
+    .subscribe((data)=> {
+      console.log(data);
       this.cookieService.set( 'Test', JSON.stringify(data)); 
       this.loading=false; 
       this.router.navigate(['../home'], { relativeTo: this.route }); 
-    })
+    }, (err)=>{
+      console.log(err);
+      alert(err.error.error.message);
+      this.loading=false;
+    }
+    
+    )
+    
   }
 }

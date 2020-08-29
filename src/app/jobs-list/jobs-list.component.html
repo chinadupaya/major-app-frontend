@@ -1,3 +1,19 @@
+<div class="my-3">
+    <google-map width="100%" [center]="center">
+         <!-- <map-marker
+            [position]="{lat: jobs[0].position.y,jobs[0].position.x}"
+            [label]="asdf"
+            [title]="asdf"
+        ></map-marker>  -->
+        <map-marker *ngFor="let marker of markers"
+        [position]="marker.position"
+        [label]="marker.label"
+        [title]="marker.title"
+        >
+
+        </map-marker>
+    </google-map>
+</div>
 <div class="row pt-3">
     <div class="col-md-4 col-12">
         <form [formGroup]="form" (submit)="onSubmit()" class="mb-3 p-3 border rounded bold-label-form">

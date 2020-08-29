@@ -9,6 +9,8 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 })
 export class ServicesListComponent implements OnInit {
   services: any[]
+  markers =[];
+  center;
   form: FormGroup
   page = 1;
   address;
@@ -43,6 +45,11 @@ export class ServicesListComponent implements OnInit {
     this.apiService.getServices()
     .subscribe((services)=>{
       this.services = services.data;
+      this.center={
+        lat: this.services[0].position.y,
+        lng: this.services[0].position.x
+      }
+      this.assignMarkers(services.data);
     })
     
   }
@@ -54,6 +61,7 @@ export class ServicesListComponent implements OnInit {
       .subscribe((services)=>{
         console.log(services);
         this.services = services.data;
+        //this.assignMarkers(services.data);
       });
   }
   getCategories(){
@@ -89,6 +97,7 @@ export class ServicesListComponent implements OnInit {
       this.latitude,this.longitude,formVal.sortBy, this.page)
       .subscribe((services)=>{
         this.services = services.data;
+        this.assignMarkers(services.data);
       });
     
   }
@@ -99,6 +108,7 @@ export class ServicesListComponent implements OnInit {
       this.latitude,this.longitude,formVal.sortBy, this.page)
       .subscribe((services)=>{
         this.services = services.data;
+        this.assignMarkers(services.data);
       });
     
   }
@@ -123,5 +133,24 @@ export class ServicesListComponent implements OnInit {
       sortBy: 'date_ascending',
       distance: 25
     })
+  }
+  assignMarkers(values){
+    this.markers=[];
+    //console.log("is this running");
+    let i;
+    for (i=0; i<values.length;i++){
+      //console.log(values[i])
+      this.markers.push({
+        position: {
+          lat: values[i].position.y,
+          lng: values[i].position.x,
+        },
+        label: {
+          color: 'red',
+        },
+        title: values[i].title,
+      })
+    }
+    console.log(this.markers);
   }
 }

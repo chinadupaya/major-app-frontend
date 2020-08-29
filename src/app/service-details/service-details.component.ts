@@ -4,6 +4,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { User } from '../class/user';
 import { CookieService } from 'ngx-cookie-service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { SocketService } from '../service/socket.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-service-details',
   templateUrl: './service-details.component.html',
@@ -18,7 +20,9 @@ export class ServiceDetailsComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router,
     private cookieService: CookieService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private socketService: SocketService,
+    private toastr: ToastrService ) { }
 
   ngOnInit(): void {
     this.fetchService();
@@ -45,8 +49,12 @@ export class ServiceDetailsComponent implements OnInit {
     this.apiService.postBooking(this.user.id, this.service.user_id, this.service.id, "", this.service.price_range)
     .subscribe((res)=>{
       console.log(res);
-      this.router.navigate(['../../services'], { relativeTo: this.route });
+      this.toastr.success(`Successfully booked ${this.service.title}`);
+      this.router.navigate(['../../profile'], { relativeTo: this.route });
+      
     })
+    this.socketService.notify(this.user.id, this.service.user_id, `${this.user.first_name} ${this.user.last_name} is requesting for your service | ${this.service.title} |`);
+
   }
   updateBooking(id, status){
     this.apiService.putBookingStatus(id,+status)
@@ -62,6 +70,15 @@ export class ServiceDetailsComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+  messageWorker(){
+
+    //console.log(this.user.id,this.job.user_id,this.user.first_name + " " +this.user.last_name, this.job.first_name + " " + this.job.last_name);
+    this.apiService.joinRoom(this.user.id,this.service.user_id,this.user.first_name + " " +this.user.last_name, this.service.first_name + " " + this.service.last_name)
+    .subscribe((data)=>{
+      this.router.navigate(['../../messages'], { relativeTo: this.route })
+    });
+    
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

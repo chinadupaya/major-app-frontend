@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-post-review',
@@ -21,7 +22,8 @@ export class PostReviewComponent implements OnInit {
     private cookieService: CookieService,
     private modalService: NgbModal,
     private router:Router,
-    private route:ActivatedRoute) { }
+    private route:ActivatedRoute,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.user=JSON.parse(this.cookieService.get('Test'));
@@ -53,14 +55,16 @@ export class PostReviewComponent implements OnInit {
         this.user.last_name, this.form.value.ratingNum,this.form.value.content, this.booking.client_id)
         .subscribe((response)=>{
           console.log(response);
-          this.router.navigate(['/profile'], { relativeTo: this.route });
+          this.toastr.success("Successfully left a review");
+          //this.router.navigate(['/profile'], { relativeTo: this.route });
         })
     }else{
       this.apiService.postReview(this.user.id,this.user.first_name, 
         this.user.last_name, this.form.value.ratingNum,this.form.value.content, this.booking.worker_id)
         .subscribe((response)=>{
           console.log(response);
-          this.router.navigate(['/profile'], { relativeTo: this.route });
+          this.toastr.success("Successfully left a review");
+          //this.router.navigate(['/profile'], { relativeTo: this.route });
         })
     }
     

@@ -38,7 +38,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="services">Services</a>
       </li>
-      <li class="nav-item" ngbDropdown>
+      <li class="nav-item" ngbDropdown display="dynamic">
         <button
           class="nav-link btn dropdown-toggle"
           ngbDropdownToggle
@@ -73,13 +73,19 @@
         >
           <a
             ngbDropdownItem
-            class="nav-link dropdown-item text-dark"
+            class="text-dark"
             routerLink="profile"
             >Profile</a
           >
+          <a
+            ngbDropdownItem
+            class="text-dark"
+            routerLink="messages"
+            >Messages</a
+          >
           <button
             ngbDropdownItem
-            class="nav-link dropdown-item text-danger"
+            class="text-danger"
             (click)="logoutUser()"
           >
             Logout

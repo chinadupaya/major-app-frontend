@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CreateWorkerProfileComponent } from './create-worker-profile/create-worker-profile.component';
 import { PostJobComponent } from './post-job/post-job.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { GoogleMapsModule } from '@angular/google-maps'
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { PostServiceComponent } from './post-service/post-service.component';
 import { ServicesListComponent } from './services-list/services-list.component';
@@ -28,6 +29,18 @@ import { PostReviewComponent } from './post-review/post-review.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 import { DataGraphsComponent } from './data-graphs/data-graphs.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MessagesListComponent } from './messages-list/messages-list.component';
+import { MessagesComponent } from './messages/messages.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { PostReview2Component } from './post-review2/post-review2.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+ 
+import { ToastrModule } from 'ngx-toastr';
+ 
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +63,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     PostReviewComponent,
     UserReviewsComponent,
     DataGraphsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MessagesListComponent,
+    MessagesComponent,
+    PostReview2Component
   ],
   imports: [
     BrowserModule,
@@ -60,6 +76,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FormsModule,
     ReactiveFormsModule,
     GooglePlaceModule,
+    GoogleMapsModule,
+    SocketIoModule.forRoot(config),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

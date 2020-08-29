@@ -13,7 +13,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DataGraphsComponent } from './data-graphs/data-graphs.component';
-
+import { MessagesComponent } from './messages/messages.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'signup', component: RegisterComponent },
@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'services/:id', component: ServiceDetailsComponent },
   { path: 'users/:id', component: UserProfileComponent },
   { path: 'data', component: DataGraphsComponent },
+  { path: 'messages', component: MessagesComponent},
 ];
 
 @NgModule({

@@ -1,8 +1,18 @@
+<h1>
+{{userProfile.first_name}} {{userProfile.last_name}}'s Profile
+<button *ngIf="userProfile.id!=user.id"class="btn btn-outline-warning mr-1" (click)="messageWorker()">Message</button>
+</h1>
 <h1>Jobs</h1>
 <app-user-jobs [userId]="id"></app-user-jobs>
 <hr/>
 <h1>Services</h1>
-<app-user-services [userId]="id"></app-user-services>
+<div *ngIf="userProfile.is_worker==1">
+    
+    <app-user-services [userId]="id"></app-user-services>
+</div>
+<div *ngIf="userProfile.is_worker==0">
+    <p class="text-info">{{userProfile.first_name}} {{userProfile.last_name}} is not a registered worker.</p>
+</div>
 <hr/>
 <h1>Reviews</h1>
 <app-user-reviews [userId]="id"></app-user-reviews>

@@ -9,7 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./jobs-list.component.css']
 })
 export class JobsListComponent implements OnInit {
-  form: FormGroup
+  form: FormGroup;
+  markers=[];
+  center;
   address;
   latitude;
   longitude;
@@ -47,14 +49,13 @@ export class JobsListComponent implements OnInit {
     this.apiService.getJobs()
     .subscribe((jobs)=>{
       this.jobs=jobs.data;
+      //console.log("first job", this.jobs[0]);
+      this.center={
+        lat: this.jobs[0].position.y,
+        lng: this.jobs[0].position.x
+      }
+      this.assignMarkers(jobs.data);
     })
-    /* this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        pageNum: this.page,
-      },
-      queryParamsHandling: 'merge',
-    }) */
   }
   getCategories(){
     this.apiService.getCategories()
@@ -89,6 +90,11 @@ export class JobsListComponent implements OnInit {
       this.latitude,this.longitude,formVal.sortBy, 1)
       .subscribe((jobs)=>{
         this.jobs = jobs.data;
+        this.center={
+          lat: this.jobs[0].position.y,
+          lng: this.jobs[0].position.x
+        }
+        this.assignMarkers(jobs.data);
       });
   }
 
@@ -99,7 +105,13 @@ export class JobsListComponent implements OnInit {
       this.latitude,this.longitude,formVal.sortBy, this.page)
       .subscribe((jobs)=>{
         this.jobs = jobs.data;
+        this.center={
+          lat: this.jobs[0].position.y,
+          lng: this.jobs[0].position.x
+        }
+        this.assignMarkers(jobs.data);
       });
+
     
   }
   prevPage(){
@@ -109,6 +121,11 @@ export class JobsListComponent implements OnInit {
       this.latitude,this.longitude,formVal.sortBy, this.page)
       .subscribe((jobs)=>{
         this.jobs = jobs.data;
+        this.center={
+          lat: this.jobs[0].position.y,
+          lng: this.jobs[0].position.x
+        }
+        this.assignMarkers(jobs.data);
       }); 
   }
   changeDistance(val){
@@ -129,5 +146,24 @@ export class JobsListComponent implements OnInit {
       sortBy: 'date_ascending',
       distance: 25
     })
+  }
+  assignMarkers(values){
+    //console.log("is this running");
+    this.markers=[];
+    let i;
+    for (i=0; i<values.length;i++){
+      //console.log(values[i])
+      this.markers.push({
+        position: {
+          lat: values[i].position.y,
+          lng: values[i].position.x,
+        },
+        label: {
+          color: 'red',
+        },
+        title: values[i].title,
+      })
+    }
+    console.log(this.markers);
   }
 }
